@@ -26,6 +26,7 @@ class LoginController: UIViewController {
         btn.layer.cornerRadius = 32/2
         btn.setImage(UIImage(named: "back-arrow"), for: .normal)
         btn.tintColor = .white
+        btn.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
         return btn
     }()
 
@@ -82,6 +83,10 @@ class LoginController: UIViewController {
         inputTextField.addTarget(self, action: #selector(inputTextFieldTextDidChange), for: .editingChanged)
     }
 
+    @objc private func didTapBackButton() {
+        navigationController?.popViewController(animated: true)
+    }
+
     @objc private func didTapContinueButton() {
         guard let phoneString = inputTextField.text else { return }
         let vc = AuthenticationController()
@@ -133,8 +138,8 @@ class LoginController: UIViewController {
 
     private func setupConstraint() {
         view.addSubview(headerView)
-        headerView.addSubview(backButton)
-        headerView.addSubview(languageButton)
+        view.addSubview(backButton)
+        view.addSubview(languageButton)
         view.addSubview(inputTextField)
         view.addSubview(continueButton)
         view.addSubview(hotlineButton)
@@ -181,6 +186,4 @@ extension LoginController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         deactiveInputTextField()
     }
-
-
 }

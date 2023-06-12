@@ -29,7 +29,9 @@ class HomeFeedHeader: UIView {
         imv.layer.borderColor = UIColor.rgba(255, 255, 255, 1).cgColor
         imv.layer.borderWidth = 1
         imv.layer.cornerRadius = 42/2
-//        let tap = UITapGestureRecognizer(target: self, action: #selector())
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapAvatarImage))
+        imv.addGestureRecognizer(tap)
+        imv.isUserInteractionEnabled = true
         return imv
     }()
 
@@ -68,6 +70,10 @@ class HomeFeedHeader: UIView {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    @objc private func didTapAvatarImage() {
+        delegate?.didTapAvatarImage()
     }
 
     private func setup() {

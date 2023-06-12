@@ -79,14 +79,15 @@ extension UIView {
 }
 
 extension String {
-    func splitString(by number: Index) {
-        guard !self.isEmpty else { return }
-        var subString: [Substring] = []
-        var startIndex = self.startIndex
-        var endIndex = self.endIndex
-
-        while startIndex < endIndex {
-            
+    func applyPatternOnNumbers(pattern: String, replacementCharacter: Character) -> String {
+        var pureNumber = self.replacingOccurrences( of: "[^0-9]", with: "", options: .regularExpression)
+        for index in 0 ..< pattern.count {
+            guard index < pureNumber.count else { return pureNumber }
+            let stringIndex = String.Index(utf16Offset: index, in: pattern)
+            let patternCharacter = pattern[stringIndex]
+            guard patternCharacter != replacementCharacter else { continue }
+            pureNumber.insert(patternCharacter, at: stringIndex)
         }
+        return pureNumber
     }
 }

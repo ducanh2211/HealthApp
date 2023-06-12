@@ -43,6 +43,7 @@ class WelcomeViewController: UIViewController {
         btn.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         btn.backgroundColor = UIColor.rgba(44, 134, 103, 1)
         btn.layer.cornerRadius = 48/2
+        btn.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
         return btn
     }()
 
@@ -55,6 +56,7 @@ class WelcomeViewController: UIViewController {
         btn.layer.cornerRadius = 48/2
         btn.layer.borderWidth = 1
         btn.layer.borderColor = UIColor.rgba(36, 42, 97, 1).cgColor
+        btn.addTarget(self, action: #selector(didTapSignUpButton), for: .touchUpInside)
         return btn
     }()
 
@@ -68,6 +70,16 @@ class WelcomeViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
         setupCollectionView()
         setupConstraints()
+    }
+
+    @objc private func didTapLoginButton() {
+        let vc = LoginController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+    @objc private func didTapSignUpButton() {
+        let vc = LoginController()
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     private func setupCollectionView() {
@@ -108,16 +120,17 @@ class WelcomeViewController: UIViewController {
 
             containerView.leftAnchor.constraint(equalTo: view.leftAnchor),
             containerView.rightAnchor.constraint(equalTo: view.rightAnchor),
-            containerView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            containerView.heightAnchor.constraint(equalToConstant: 80),
+            containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 
             loginButton.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 16),
             loginButton.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 16),
+            loginButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             loginButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.4),
             loginButton.heightAnchor.constraint(equalToConstant: 48),
 
             signUpButton.topAnchor.constraint(equalTo: loginButton.topAnchor),
             signUpButton.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -16),
+            signUpButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             signUpButton.widthAnchor.constraint(equalTo: containerView.widthAnchor, multiplier: 0.48),
             signUpButton.heightAnchor.constraint(equalTo: loginButton.heightAnchor)
         ])

@@ -13,6 +13,8 @@ enum HomeFeedEndpoint {
     case promotion
     case promotionDetails
     case doctors
+    case user
+    case location(province: String, district: String, ward: String)
 }
 
 extension HomeFeedEndpoint: Endpoint {
@@ -32,6 +34,10 @@ extension HomeFeedEndpoint: Endpoint {
                 return "/hdhuy179/ef03ed850ad56f0136fe3c5916b3280b/raw/1do"
             case .doctors:
                 return "/hdhuy179/9ac0a89969b46fb67bc7d1a8b94d180e/raw"
+            case .user:
+                return "/hdhuy179/7883b8f11ea4b25cf6d3822c67049606/raw/Training_Intern_BasicApp_UserInfo"
+            case .location(let province, let district, let ward):
+                return "/hdhuy179/7883b8f11ea4b25cf6d3822c67049606/raw/province_code=\(province)&district_code=\(district)&ward_code=\(ward)"
         }
     }
 

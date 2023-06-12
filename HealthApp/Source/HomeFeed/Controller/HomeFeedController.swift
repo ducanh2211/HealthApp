@@ -50,7 +50,8 @@ class HomeFeedController: UIViewController {
 
 extension HomeFeedController: HomeFeedHeaderDelegate {
     func didTapAvatarImage() {
-
+        let vc = UserProfileViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
