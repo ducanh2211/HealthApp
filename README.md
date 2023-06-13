@@ -32,7 +32,7 @@ This is a small personal project which is developed to enhanced my layout skills
 
 ## Preview
 
-| Log in | Home | Sign up |
+| Log in | Home | User Info |
 | :-------: | :-------: | :-------: |
 | ![](images/intro.gif) | ![](images/home-feed.gif) | ![](images/user-info.gif) |
 
